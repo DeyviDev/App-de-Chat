@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="ChatApp.Views.Templates.SenderChatMessageItemTemplate">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            
+            <Style x:Key="MessageContainerStyle" TargetType="Grid">
+                <Setter Property="Margin" Value="8"/>
+            </Style>
+            
+            <Style x:Key="SenderContainerStyle" TargetType="Grid">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="End"/>
+            </Style>
+            
+            <Style x:Key="SenderEllipseStyle" TargetType="Ellipse">
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="WidthRequest" Value="35"/>
+                
+            </Style>
+        
+            <Style x:Key="SenderImageStyle" TargetType="Image">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="Margin" Value="12"/>
+            </Style>
+            
+            <Color x:Key="MessageColor">#F7F7F8</Color>
+            <Style x:Key="MessageShapeStyle" TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource MessageColor}"/>
+                <Setter Property="CornerRadius" Value="24, 24, 0, 24"/>
+                
+            </Style>
+            
+             <Style x:Key="MessageTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="FontFamily" Value="Metropolis Regular" />
+                <Setter Property="TextColor" Value="Black" />
+                 <Setter Property="VerticalOptions" Value="Start" />
+                 <Setter Property="Margin" Value="0,90" />
+                 
+            </Style>
+            
+            <Style x:Key="TimeTextStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="10"/>
+                <Setter Property="FontFamily" Value="Metropolis Regular"/>
+                <Setter Property="TextColor" Value="Gray"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Margin" Value="36,0 ,12 ,0"/>
+            </Style>
+            
+            
+        </ResourceDictionary>
+    </ContentView.Resources>   
+    
+    <ContentView.Content>
+        <Grid
+            ColumnDefinitions="Auto, *, Auto"
+              Style="{StaticResource MessageContainerStyle}">
+            <Grid
+                Style="{StaticResource SenderContainerStyle}">
+                <Ellipse 
+                    Fill="{Binding Sender.Color}"
+                         Style="{StaticResource SenderEllipseStyle}"/>
+                <Image 
+                    Source="{Binding Sender.Image}"
+                       Style="{StaticResource SenderImageStyle}"/>
+            </Grid>
+            <Grid
+                Grid.Column="1">
+                <BoxView 
+                    Style="{StaticResource MessageShapeStyle}"/>
+                <Label 
+                    Text="{Binding Text}"
+                       Padding="12"
+                    Margin="5"
+                       Style="{StaticResource MessageTextStyle}"/>
+            </Grid>
+            <Label 
+                Grid.Column="2"
+                Text="{Binding Time}"
+                   Style="{StaticResource TimeTextStyle}"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
